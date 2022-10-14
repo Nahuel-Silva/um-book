@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.187.0/containers/docker-existing-docker-compose
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+{
+	"name": "Umbook Dev Container",
+
+	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
+	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+
+	// The 'service' property is the name of the service for the container that VS Code should
+	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+	"service": "isa-umbook-backend",
+
+	// The optional 'workspaceFolder' property is the path VS Code should open by default when
+	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
+	"workspaceFolder": "/home/jhipster/app/",
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"vscjava.vscode-java-debug",
+		"vscjava.vscode-java-pack",
+		"vscjava.vscode-java-test",
+		"redhat.java",
+		"vscjava.vscode-maven",
+		"vscjava.vscode-spring-boot-dashboard",
+		"pivotal.vscode-spring-boot",
+		"visualstudioexptteam.vscodeintellicode",
+		"mtxr.sqltools-driver-mysql",
+		"ms-vscode.vscode-typescript-tslint-plugin",
+		"mtxr.sqltools"
+	],
+
+	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
+	 "remoteUser": "jhipster"
+}

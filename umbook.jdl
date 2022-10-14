@@ -1,0 +1,100 @@
+
+entity Usuario {
+	nombre String
+    apellido String
+    mail String
+    password String
+    tipoUsuario String
+}
+
+entity Notificaciones {
+	tipoNotificacion String
+}
+
+entity Grupos {
+	nombre String
+    cantPersonas String
+}
+
+entity Perfil {
+	cantAlbumes Integer
+	cantSeguidores Integer
+    cantSeguidos Integer
+    descripcion String
+}
+
+
+entity Album {
+	nombre String
+    descripcion String
+    cantFotos Integer
+}
+
+entity Fotos {
+	descripcion String
+    usuarioEtiquetados Array
+}
+
+entity Comentarios {
+	descripcion String
+}
+
+entity Amigos {
+	cantidad Integer
+    amigosComun String
+}
+
+entity Admin {
+	nombre String
+    apellido String
+    mail String
+    password String
+    tipoUsuario String
+}
+
+relationship OneToMany {
+	Usuario to Notificaciones
+}
+
+relationship OneToOne {
+	Usuario to Perfil
+}
+
+relationship ManyToMany {
+	Usuario to Grupos
+}
+
+relationship ManyToMany {
+	Grupos to Album
+}
+
+relationship OneToMany {
+	Perfil to Album
+}
+
+relationship OneToMany {
+	Usuario to Album
+}
+
+relationship OneToMany {
+	Album to Fotos
+}
+
+relationship OneToMany {
+	Usuario to Fotos
+}
+
+relationship OneToMany {
+	Fotos to Comentarios
+}
+
+relationship OneToMany {
+	Usuario to Amigos
+}
+
+relationship OneToMany {
+	Admin to Usuario
+}
+
+
+

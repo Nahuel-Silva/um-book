@@ -1,0 +1,39 @@
+version: '3'
+services:
+    isa-umbook-db:
+      image: mariadb:10.4.4
+      container_name: isa-umbook-db-dev
+      restart: unless-stopped
+      environment:
+        - MYSQL_USER=root
+        - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+        - MYSQL_ROOT_PASSWORD=
+        - MYSQL_DATABASE=umbook
+      command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp --default_time_zone=-03:00 --net-read-timeout=60 --net-write-timeout=120 --max-allowed-packet=536870912 --wait-timeout=1850 --interactive-timeout=1850
+      networks:
+        - isa-umbook-backend-dev
+      volumes:
+        - mariadb-isa-umbook:/var/lib/mysql
+
+    isa-umbook-backend:
+      image: jhipster/jhipster
+      container_name: isa-umbook-backend-dev
+      restart: unless-stopped
+      depends_on:
+        - isa-umbook-db
+      ports:
+        - '8080:8080'
+        - '9000:9000'
+        - '3001:3001'
+      networks:
+        - isa-umbook-backend-dev
+      volumes:
+        - /home/nahuel/facultad/um-book:/home/jhipster/app
+        - /home/nahuel/facultad/um-book:/home/jhipster/.m2
+
+networks:
+  isa-umbook-backend-dev:
+    driver: 'bridge'
+
+volumes:
+  mariadb-isa-umbook:
