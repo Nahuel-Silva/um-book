@@ -1,0 +1,81 @@
+{
+  "applications": ["umbook"],
+  "changelogDate": "20221028210000",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "usuario",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellido",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tipoUsuario",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Usuario",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "perfil",
+      "otherEntityRelationshipName": "usuario",
+      "ownerSide": true,
+      "relationshipName": "perfil",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "notificaciones",
+      "otherEntityRelationshipName": "usuario",
+      "relationshipName": "notificaciones",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "album",
+      "otherEntityRelationshipName": "usuario",
+      "relationshipName": "album",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "fotos",
+      "otherEntityRelationshipName": "usuario",
+      "relationshipName": "fotos",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "amigos",
+      "otherEntityRelationshipName": "usuario",
+      "relationshipName": "amigos",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "grupos",
+      "otherEntityRelationshipName": "usuario",
+      "ownerSide": true,
+      "relationshipName": "grupos",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "admin",
+      "otherEntityRelationshipName": "usuario",
+      "relationshipName": "admin",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

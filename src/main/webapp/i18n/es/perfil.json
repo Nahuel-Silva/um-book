@@ -1,0 +1,29 @@
+{
+  "umbookApp": {
+    "perfil": {
+      "home": {
+        "title": "Perfils",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Perfil",
+        "createOrEditLabel": "Crear o editar Perfil",
+        "notFound": "Ningún Perfils encontrado"
+      },
+      "created": "Un nuevo Perfil ha sido creado con el identificador {{ param }}",
+      "updated": "Un Perfil ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Perfil ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Perfil {{ id }}?"
+      },
+      "detail": {
+        "title": "Perfil"
+      },
+      "id": "ID",
+      "cantAlbumes": "Cant Albumes",
+      "cantSeguidores": "Cant Seguidores",
+      "cantSeguidos": "Cant Seguidos",
+      "descripcion": "Descripcion",
+      "album": "Album",
+      "usuario": "Usuario"
+    }
+  }
+}

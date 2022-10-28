@@ -1,0 +1,84 @@
+<div>
+  <h2 id="page-heading" data-cy="FotosHeading">
+    <span jhiTranslate="umbookApp.fotos.home.title">Fotos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="umbookApp.fotos.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-fotos"
+        [routerLink]="['/fotos/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="umbookApp.fotos.home.createLabel"> Crear nuevo Fotos </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="fotos?.length === 0">
+    <span jhiTranslate="umbookApp.fotos.home.notFound">Ningún Fotos encontrado</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="fotos && fotos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="descripcion">
+            <span jhiTranslate="umbookApp.fotos.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="album.id"><span jhiTranslate="umbookApp.fotos.album">Album</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="usuario.id">
+            <span jhiTranslate="umbookApp.fotos.usuario">Usuario</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fotos of fotos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/fotos', fotos.id, 'view']">{{ fotos.id }}</a>
+          </td>
+          <td>{{ fotos.descripcion }}</td>
+          <td>
+            <div *ngIf="fotos.album">
+              <a [routerLink]="['/album', fotos.album.id, 'view']">{{ fotos.album?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="fotos.usuario">
+              <a [routerLink]="['/usuario', fotos.usuario.id, 'view']">{{ fotos.usuario?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/fotos', fotos.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/fotos', fotos.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(fotos)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

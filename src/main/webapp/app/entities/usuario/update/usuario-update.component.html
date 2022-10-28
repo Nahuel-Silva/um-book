@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-usuario-heading" data-cy="UsuarioCreateUpdateHeading" jhiTranslate="umbookApp.usuario.home.createOrEditLabel">
+        Crear o editar Usuario
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="umbookApp.usuario.nombre" for="field_nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="umbookApp.usuario.apellido" for="field_apellido">Apellido</label>
+          <input type="text" class="form-control" name="apellido" id="field_apellido" data-cy="apellido" formControlName="apellido" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="umbookApp.usuario.mail" for="field_mail">Mail</label>
+          <input type="text" class="form-control" name="mail" id="field_mail" data-cy="mail" formControlName="mail" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="umbookApp.usuario.password" for="field_password">Password</label>
+          <input type="text" class="form-control" name="password" id="field_password" data-cy="password" formControlName="password" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="umbookApp.usuario.tipoUsuario" for="field_tipoUsuario">Tipo Usuario</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tipoUsuario"
+            id="field_tipoUsuario"
+            data-cy="tipoUsuario"
+            formControlName="tipoUsuario"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="umbookApp.usuario.perfil" for="field_perfil">Perfil</label>
+          <select
+            class="form-control"
+            id="field_perfil"
+            data-cy="perfil"
+            name="perfil"
+            formControlName="perfil"
+            [compareWith]="comparePerfil"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="perfilOption" *ngFor="let perfilOption of perfilsCollection">{{ perfilOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="umbookApp.usuario.grupos" for="field_grupos">Grupos</label>
+          <select
+            class="form-control"
+            id="field_grupos"
+            data-cy="grupos"
+            multiple
+            name="grupos"
+            formControlName="grupos"
+            [compareWith]="compareGrupos"
+          >
+            <option [ngValue]="gruposOption" *ngFor="let gruposOption of gruposSharedCollection">{{ gruposOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="umbookApp.usuario.admin" for="field_admin">Admin</label>
+          <select class="form-control" id="field_admin" data-cy="admin" name="admin" formControlName="admin" [compareWith]="compareAdmin">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="adminOption" *ngFor="let adminOption of adminsSharedCollection">{{ adminOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

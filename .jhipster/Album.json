@@ -1,0 +1,54 @@
+{
+  "applications": ["umbook"],
+  "changelogDate": "20221028210400",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "album",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cantFotos",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Album",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "fotos",
+      "otherEntityRelationshipName": "album",
+      "relationshipName": "fotos",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "perfil",
+      "otherEntityRelationshipName": "album",
+      "relationshipName": "perfil",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "usuario",
+      "otherEntityRelationshipName": "album",
+      "relationshipName": "usuario",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "grupos",
+      "otherEntityRelationshipName": "album",
+      "ownerSide": false,
+      "relationshipName": "grupos",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

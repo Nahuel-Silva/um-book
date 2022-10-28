@@ -1,0 +1,25 @@
+{
+  "umbookApp": {
+    "comentarios": {
+      "home": {
+        "title": "Comentarios",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Comentarios",
+        "createOrEditLabel": "Create or edit a Comentarios",
+        "notFound": "No Comentarios found"
+      },
+      "created": "A new Comentarios is created with identifier {{ param }}",
+      "updated": "A Comentarios is updated with identifier {{ param }}",
+      "deleted": "A Comentarios is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Comentarios {{ id }}?"
+      },
+      "detail": {
+        "title": "Comentarios"
+      },
+      "id": "ID",
+      "descripcion": "Descripcion",
+      "fotos": "Fotos"
+    }
+  }
+}

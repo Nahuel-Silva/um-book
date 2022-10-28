@@ -1,0 +1,39 @@
+{
+  "applications": ["umbook"],
+  "changelogDate": "20221028210500",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "fotos",
+  "fields": [
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Fotos",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "comentarios",
+      "otherEntityRelationshipName": "fotos",
+      "relationshipName": "comentarios",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "album",
+      "otherEntityRelationshipName": "fotos",
+      "relationshipName": "album",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "usuario",
+      "otherEntityRelationshipName": "fotos",
+      "relationshipName": "usuario",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,41 +1,48 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.187.0/containers/docker-existing-docker-compose
-// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/java
 {
-	"name": "Umbook Dev Container",
+  "name": "Umbook",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      // Update the VARIANT arg to pick a Java version: 11, 17
+      // Append -bullseye or -buster to pin to an OS version.
+      // Use the -bullseye variants on local arm64/Apple Silicon.
+      "VARIANT": "11",
+      // Options
+      "INSTALL_MAVEN": "true",
+      "INSTALL_GRADLE": "false",
+      "NODE_VERSION": "lts/*"
+    }
+  },
 
-	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
-	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
-	"dockerComposeFile": [
-		"docker-compose.yml"
-	],
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "java.home": "/docker-java-home"
+  },
 
-	// The 'service' property is the name of the service for the container that VS Code should
-	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
-	"service": "isa-umbook-backend",
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "angular.ng-template",
+    "christian-kohler.npm-intellisense",
+    "firsttris.vscode-jest-runner",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "dbaeumer.vscode-eslint",
+    "vscjava.vscode-java-pack",
+    "pivotal.vscode-boot-dev-pack",
+    "esbenp.prettier-vscode"
+  ],
 
-	// The optional 'workspaceFolder' property is the path VS Code should open by default when
-	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/home/jhipster/app/",
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [4200, 3001, 9000, 8080],
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": {},
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "java -version",
 
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"vscjava.vscode-java-debug",
-		"vscjava.vscode-java-pack",
-		"vscjava.vscode-java-test",
-		"redhat.java",
-		"vscjava.vscode-maven",
-		"vscjava.vscode-spring-boot-dashboard",
-		"pivotal.vscode-spring-boot",
-		"visualstudioexptteam.vscodeintellicode",
-		"mtxr.sqltools-driver-mysql",
-		"ms-vscode.vscode-typescript-tslint-plugin",
-		"mtxr.sqltools"
-	],
-
-	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	 "remoteUser": "jhipster"
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "vscode",
+  "features": {
+    "docker-in-docker": "latest",
+    "docker-from-docker": "latest"
+  }
 }

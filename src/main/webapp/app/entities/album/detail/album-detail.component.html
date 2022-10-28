@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="album">
+      <h2 data-cy="albumDetailsHeading"><span jhiTranslate="umbookApp.album.detail.title">Album</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ album.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.album.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ album.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.album.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ album.descripcion }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.album.cantFotos">Cant Fotos</span></dt>
+        <dd>
+          <span>{{ album.cantFotos }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.album.perfil">Perfil</span></dt>
+        <dd>
+          <div *ngIf="album.perfil">
+            <a [routerLink]="['/perfil', album.perfil.id, 'view']">{{ album.perfil?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.album.usuario">Usuario</span></dt>
+        <dd>
+          <div *ngIf="album.usuario">
+            <a [routerLink]="['/usuario', album.usuario.id, 'view']">{{ album.usuario?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/album', album.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

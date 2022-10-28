@@ -1,0 +1,27 @@
+{
+  "applications": ["umbook"],
+  "changelogDate": "20221028210100",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "notificaciones",
+  "fields": [
+    {
+      "fieldName": "tipoNotificacion",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Notificaciones",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "usuario",
+      "otherEntityRelationshipName": "notificaciones",
+      "relationshipName": "usuario",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

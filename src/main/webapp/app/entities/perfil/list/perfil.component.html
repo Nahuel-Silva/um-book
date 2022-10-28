@@ -1,0 +1,82 @@
+<div>
+  <h2 id="page-heading" data-cy="PerfilHeading">
+    <span jhiTranslate="umbookApp.perfil.home.title">Perfils</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="umbookApp.perfil.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-perfil"
+        [routerLink]="['/perfil/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="umbookApp.perfil.home.createLabel"> Crear nuevo Perfil </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="perfils?.length === 0">
+    <span jhiTranslate="umbookApp.perfil.home.notFound">Ningún Perfils encontrado</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="perfils && perfils.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cantAlbumes">
+            <span jhiTranslate="umbookApp.perfil.cantAlbumes">Cant Albumes</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cantSeguidores">
+            <span jhiTranslate="umbookApp.perfil.cantSeguidores">Cant Seguidores</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cantSeguidos">
+            <span jhiTranslate="umbookApp.perfil.cantSeguidos">Cant Seguidos</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="descripcion">
+            <span jhiTranslate="umbookApp.perfil.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let perfil of perfils; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/perfil', perfil.id, 'view']">{{ perfil.id }}</a>
+          </td>
+          <td>{{ perfil.cantAlbumes }}</td>
+          <td>{{ perfil.cantSeguidores }}</td>
+          <td>{{ perfil.cantSeguidos }}</td>
+          <td>{{ perfil.descripcion }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/perfil', perfil.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/perfil', perfil.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(perfil)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

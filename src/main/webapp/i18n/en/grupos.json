@@ -1,0 +1,27 @@
+{
+  "umbookApp": {
+    "grupos": {
+      "home": {
+        "title": "Grupos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Grupos",
+        "createOrEditLabel": "Create or edit a Grupos",
+        "notFound": "No Grupos found"
+      },
+      "created": "A new Grupos is created with identifier {{ param }}",
+      "updated": "A Grupos is updated with identifier {{ param }}",
+      "deleted": "A Grupos is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Grupos {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupos"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "cantPersonas": "Cant Personas",
+      "album": "Album",
+      "usuario": "Usuario"
+    }
+  }
+}

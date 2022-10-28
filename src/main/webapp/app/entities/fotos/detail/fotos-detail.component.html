@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fotos">
+      <h2 data-cy="fotosDetailsHeading"><span jhiTranslate="umbookApp.fotos.detail.title">Fotos</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fotos.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.fotos.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ fotos.descripcion }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.fotos.album">Album</span></dt>
+        <dd>
+          <div *ngIf="fotos.album">
+            <a [routerLink]="['/album', fotos.album.id, 'view']">{{ fotos.album?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.fotos.usuario">Usuario</span></dt>
+        <dd>
+          <div *ngIf="fotos.usuario">
+            <a [routerLink]="['/usuario', fotos.usuario.id, 'view']">{{ fotos.usuario?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/fotos', fotos.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

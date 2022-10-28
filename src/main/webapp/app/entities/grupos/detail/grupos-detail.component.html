@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="grupos">
+      <h2 data-cy="gruposDetailsHeading"><span jhiTranslate="umbookApp.grupos.detail.title">Grupos</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ grupos.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.grupos.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ grupos.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.grupos.cantPersonas">Cant Personas</span></dt>
+        <dd>
+          <span>{{ grupos.cantPersonas }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.grupos.album">Album</span></dt>
+        <dd>
+          <span *ngFor="let album of grupos.albums; let last = last">
+            <a [routerLink]="['/album', album.id, 'view']">{{ album.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/grupos', grupos.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

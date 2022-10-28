@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="notificaciones">
+      <h2 data-cy="notificacionesDetailsHeading"><span jhiTranslate="umbookApp.notificaciones.detail.title">Notificaciones</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ notificaciones.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.notificaciones.tipoNotificacion">Tipo Notificacion</span></dt>
+        <dd>
+          <span>{{ notificaciones.tipoNotificacion }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.notificaciones.usuario">Usuario</span></dt>
+        <dd>
+          <div *ngIf="notificaciones.usuario">
+            <a [routerLink]="['/usuario', notificaciones.usuario.id, 'view']">{{ notificaciones.usuario?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/notificaciones', notificaciones.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

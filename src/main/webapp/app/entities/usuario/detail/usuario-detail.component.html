@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="usuario">
+      <h2 data-cy="usuarioDetailsHeading"><span jhiTranslate="umbookApp.usuario.detail.title">Usuario</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ usuario.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.usuario.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ usuario.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.usuario.apellido">Apellido</span></dt>
+        <dd>
+          <span>{{ usuario.apellido }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.usuario.mail">Mail</span></dt>
+        <dd>
+          <span>{{ usuario.mail }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.usuario.password">Password</span></dt>
+        <dd>
+          <span>{{ usuario.password }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.usuario.tipoUsuario">Tipo Usuario</span></dt>
+        <dd>
+          <span>{{ usuario.tipoUsuario }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.usuario.perfil">Perfil</span></dt>
+        <dd>
+          <div *ngIf="usuario.perfil">
+            <a [routerLink]="['/perfil', usuario.perfil.id, 'view']">{{ usuario.perfil?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.usuario.grupos">Grupos</span></dt>
+        <dd>
+          <span *ngFor="let grupos of usuario.grupos; let last = last">
+            <a [routerLink]="['/grupos', grupos.id, 'view']">{{ grupos.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.usuario.admin">Admin</span></dt>
+        <dd>
+          <div *ngIf="usuario.admin">
+            <a [routerLink]="['/admin', usuario.admin.id, 'view']">{{ usuario.admin?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/usuario', usuario.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

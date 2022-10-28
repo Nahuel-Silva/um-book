@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="perfil">
+      <h2 data-cy="perfilDetailsHeading"><span jhiTranslate="umbookApp.perfil.detail.title">Perfil</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ perfil.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.perfil.cantAlbumes">Cant Albumes</span></dt>
+        <dd>
+          <span>{{ perfil.cantAlbumes }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.perfil.cantSeguidores">Cant Seguidores</span></dt>
+        <dd>
+          <span>{{ perfil.cantSeguidores }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.perfil.cantSeguidos">Cant Seguidos</span></dt>
+        <dd>
+          <span>{{ perfil.cantSeguidos }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.perfil.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ perfil.descripcion }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/perfil', perfil.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

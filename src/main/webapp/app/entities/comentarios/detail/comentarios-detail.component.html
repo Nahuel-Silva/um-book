@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="comentarios">
+      <h2 data-cy="comentariosDetailsHeading"><span jhiTranslate="umbookApp.comentarios.detail.title">Comentarios</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ comentarios.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.comentarios.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ comentarios.descripcion }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.comentarios.fotos">Fotos</span></dt>
+        <dd>
+          <div *ngIf="comentarios.fotos">
+            <a [routerLink]="['/fotos', comentarios.fotos.id, 'view']">{{ comentarios.fotos?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/comentarios', comentarios.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

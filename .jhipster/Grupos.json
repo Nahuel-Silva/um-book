@@ -1,0 +1,39 @@
+{
+  "applications": ["umbook"],
+  "changelogDate": "20221028210200",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "grupos",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cantPersonas",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Grupos",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "album",
+      "otherEntityRelationshipName": "grupos",
+      "ownerSide": true,
+      "relationshipName": "album",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "usuario",
+      "otherEntityRelationshipName": "grupos",
+      "ownerSide": false,
+      "relationshipName": "usuario",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

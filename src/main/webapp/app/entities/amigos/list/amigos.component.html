@@ -1,0 +1,82 @@
+<div>
+  <h2 id="page-heading" data-cy="AmigosHeading">
+    <span jhiTranslate="umbookApp.amigos.home.title">Amigos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="umbookApp.amigos.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-amigos"
+        [routerLink]="['/amigos/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="umbookApp.amigos.home.createLabel"> Crear nuevo Amigos </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="amigos?.length === 0">
+    <span jhiTranslate="umbookApp.amigos.home.notFound">Ningún Amigos encontrado</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="amigos && amigos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cantidad">
+            <span jhiTranslate="umbookApp.amigos.cantidad">Cantidad</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="amigosComun">
+            <span jhiTranslate="umbookApp.amigos.amigosComun">Amigos Comun</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="usuario.id">
+            <span jhiTranslate="umbookApp.amigos.usuario">Usuario</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let amigos of amigos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/amigos', amigos.id, 'view']">{{ amigos.id }}</a>
+          </td>
+          <td>{{ amigos.cantidad }}</td>
+          <td>{{ amigos.amigosComun }}</td>
+          <td>
+            <div *ngIf="amigos.usuario">
+              <a [routerLink]="['/usuario', amigos.usuario.id, 'view']">{{ amigos.usuario?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/amigos', amigos.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/amigos', amigos.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(amigos)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

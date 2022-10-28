@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Usuario.
+    -->
+    <changeSet id="20221028210000-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="perfil_id"
+                                 baseTableName="usuario"
+                                 constraintName="fk_usuario__perfil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="perfil"/>
+
+        <addForeignKeyConstraint baseColumnNames="usuario_id"
+                                 baseTableName="rel_usuario__grupos"
+                                 constraintName="fk_rel_usuario__grupos__usuario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario"/>
+
+        <addForeignKeyConstraint baseColumnNames="grupos_id"
+                                 baseTableName="rel_usuario__grupos"
+                                 constraintName="fk_rel_usuario__grupos__grupos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grupos"/>
+
+        <addForeignKeyConstraint baseColumnNames="admin_id"
+                                 baseTableName="usuario"
+                                 constraintName="fk_usuario__admin_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="admin"/>
+    </changeSet>
+</databaseChangeLog>

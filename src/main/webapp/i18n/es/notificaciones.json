@@ -1,0 +1,25 @@
+{
+  "umbookApp": {
+    "notificaciones": {
+      "home": {
+        "title": "Notificaciones",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Notificaciones",
+        "createOrEditLabel": "Crear o editar Notificaciones",
+        "notFound": "Ningún Notificaciones encontrado"
+      },
+      "created": "Un nuevo Notificaciones ha sido creado con el identificador {{ param }}",
+      "updated": "Un Notificaciones ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Notificaciones ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Notificaciones {{ id }}?"
+      },
+      "detail": {
+        "title": "Notificaciones"
+      },
+      "id": "ID",
+      "tipoNotificacion": "Tipo Notificacion",
+      "usuario": "Usuario"
+    }
+  }
+}

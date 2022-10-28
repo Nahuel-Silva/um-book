@@ -1,0 +1,79 @@
+<div>
+  <h2 id="page-heading" data-cy="GruposHeading">
+    <span jhiTranslate="umbookApp.grupos.home.title">Grupos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="umbookApp.grupos.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-grupos"
+        [routerLink]="['/grupos/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="umbookApp.grupos.home.createLabel"> Crear nuevo Grupos </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="grupos?.length === 0">
+    <span jhiTranslate="umbookApp.grupos.home.notFound">Ningún Grupos encontrado</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="grupos && grupos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nombre"><span jhiTranslate="umbookApp.grupos.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cantPersonas">
+            <span jhiTranslate="umbookApp.grupos.cantPersonas">Cant Personas</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="album.id"><span jhiTranslate="umbookApp.grupos.album">Album</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let grupos of grupos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/grupos', grupos.id, 'view']">{{ grupos.id }}</a>
+          </td>
+          <td>{{ grupos.nombre }}</td>
+          <td>{{ grupos.cantPersonas }}</td>
+          <td>
+            <span *ngFor="let album of grupos.albums; let last = last">
+              <a class="form-control-static" [routerLink]="['/album', album.id, 'view']">{{ album.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/grupos', grupos.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/grupos', grupos.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(grupos)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

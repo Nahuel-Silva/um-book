@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="AlbumHeading">
+    <span jhiTranslate="umbookApp.album.home.title">Albums</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="umbookApp.album.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-album"
+        [routerLink]="['/album/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="umbookApp.album.home.createLabel"> Crear nuevo Album </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="albums?.length === 0">
+    <span jhiTranslate="umbookApp.album.home.notFound">Ningún Albums encontrado</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="albums && albums.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nombre"><span jhiTranslate="umbookApp.album.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="descripcion">
+            <span jhiTranslate="umbookApp.album.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cantFotos">
+            <span jhiTranslate="umbookApp.album.cantFotos">Cant Fotos</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="perfil.id">
+            <span jhiTranslate="umbookApp.album.perfil">Perfil</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="usuario.id">
+            <span jhiTranslate="umbookApp.album.usuario">Usuario</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let album of albums; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/album', album.id, 'view']">{{ album.id }}</a>
+          </td>
+          <td>{{ album.nombre }}</td>
+          <td>{{ album.descripcion }}</td>
+          <td>{{ album.cantFotos }}</td>
+          <td>
+            <div *ngIf="album.perfil">
+              <a [routerLink]="['/perfil', album.perfil.id, 'view']">{{ album.perfil?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="album.usuario">
+              <a [routerLink]="['/usuario', album.usuario.id, 'view']">{{ album.usuario?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/album', album.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/album', album.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(album)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

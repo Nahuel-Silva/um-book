@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="admin">
+      <h2 data-cy="adminDetailsHeading"><span jhiTranslate="umbookApp.admin.detail.title">Admin</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ admin.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.admin.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ admin.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.admin.apellido">Apellido</span></dt>
+        <dd>
+          <span>{{ admin.apellido }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.admin.mail">Mail</span></dt>
+        <dd>
+          <span>{{ admin.mail }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.admin.password">Password</span></dt>
+        <dd>
+          <span>{{ admin.password }}</span>
+        </dd>
+        <dt><span jhiTranslate="umbookApp.admin.tipoUsuario">Tipo Usuario</span></dt>
+        <dd>
+          <span>{{ admin.tipoUsuario }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/admin', admin.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

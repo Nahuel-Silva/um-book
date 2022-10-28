@@ -1,0 +1,27 @@
+{
+  "umbookApp": {
+    "fotos": {
+      "home": {
+        "title": "Fotos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Fotos",
+        "createOrEditLabel": "Crear o editar Fotos",
+        "notFound": "Ningún Fotos encontrado"
+      },
+      "created": "Un nuevo Fotos ha sido creado con el identificador {{ param }}",
+      "updated": "Un Fotos ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Fotos ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Fotos {{ id }}?"
+      },
+      "detail": {
+        "title": "Fotos"
+      },
+      "id": "ID",
+      "descripcion": "Descripcion",
+      "comentarios": "Comentarios",
+      "album": "Album",
+      "usuario": "Usuario"
+    }
+  }
+}

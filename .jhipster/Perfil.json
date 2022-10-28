@@ -1,0 +1,46 @@
+{
+  "applications": ["umbook"],
+  "changelogDate": "20221028210300",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "perfil",
+  "fields": [
+    {
+      "fieldName": "cantAlbumes",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "cantSeguidores",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "cantSeguidos",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Perfil",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "album",
+      "otherEntityRelationshipName": "perfil",
+      "relationshipName": "album",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "usuario",
+      "otherEntityRelationshipName": "perfil",
+      "ownerSide": false,
+      "relationshipName": "usuario",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

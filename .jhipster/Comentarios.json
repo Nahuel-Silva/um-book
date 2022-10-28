@@ -1,0 +1,27 @@
+{
+  "applications": ["umbook"],
+  "changelogDate": "20221028210600",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "comentarios",
+  "fields": [
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Comentarios",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "fotos",
+      "otherEntityRelationshipName": "comentarios",
+      "relationshipName": "fotos",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

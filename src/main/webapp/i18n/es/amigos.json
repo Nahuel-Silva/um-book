@@ -1,0 +1,26 @@
+{
+  "umbookApp": {
+    "amigos": {
+      "home": {
+        "title": "Amigos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Amigos",
+        "createOrEditLabel": "Crear o editar Amigos",
+        "notFound": "Ningún Amigos encontrado"
+      },
+      "created": "Un nuevo Amigos ha sido creado con el identificador {{ param }}",
+      "updated": "Un Amigos ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Amigos ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Amigos {{ id }}?"
+      },
+      "detail": {
+        "title": "Amigos"
+      },
+      "id": "ID",
+      "cantidad": "Cantidad",
+      "amigosComun": "Amigos Comun",
+      "usuario": "Usuario"
+    }
+  }
+}
